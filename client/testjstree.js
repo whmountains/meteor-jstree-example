@@ -1,12 +1,26 @@
-var  tree, search;
+
+// T3 API -- client side
+NodesApp         = {};
+NodesApp.subscriptions = [];
+NodesApp.subscriptions['nodes']  = Meteor.subscribe('nodes' );
+NodesApp.tree;
+NodesApp.search;
+NodesApp.data;
 
 Template.showtree.rendered  = function(){
-      var self = this;
-      tree   = $('#tree');
-      search = $('#searchNode');
+      NodesApp.self = this;
+      NodesApp.tree   = $('#tree');
+      NodesApp.search = $('#searchNode');
       //showTree( prepareRecursiveTreeData() );
-        showTree( prepareLinearTreeData() );
-      bindTreeEvents();
+      //showTree( prepareLinearTreeData()    );
+    if (!NodesApp.self.handle){
+         NodesApp.self.handle = Meteor.autorun(function(){
+             NodesApp.data = Nodes.find().fetch();
+              showTree( prepareLinearTreeData()     );
+           // showTree( NodesApp.data               );
+        }); //self.handle
+    } // if (!self.handle)
+    bindTreeEvents();
 }
 
 Template.showtree.events({
@@ -25,7 +39,7 @@ Template.showtree.events({
 });
 
 function showTree(_treeData){
-    tree.jstree({
+   NodesApp.tree.jstree({
 
         "core" : {
             "animation"               : 0,
@@ -80,22 +94,69 @@ function showTree(_treeData){
 function bindTreeEvents(){
     var to = false;
 
-    search.keyup(function () {
+   NodesApp.search.keyup(function () {
         if(to) { clearTimeout(to); }
         to = setTimeout(function () {
-            var v = search.val();
-            tree.jstree(true).search(v);
+            var v =NodesApp.search.val();
+           NodesApp.tree.jstree(true).search(v);
         }, 250);
     });
 
-    tree.on('changed.jstree', function (e, data) {
-        console.log(data.selected);
-        Session.set('selectedNodes', data.selected);
+   NodesApp.tree.on("changed.jstree", function (e, data) {
+        var i, j, selectedNodes = [];
+        for(i = 0, j = data.selected.length; i < j; i++) {
+            selectedNodes.push(data.instance.get_node(data.selected[i]).original.id);
+        }
+        Session.set('selectedNodes', selectedNodes);
+        console.log(selectedNodes);
     });
+
+   NodesApp.tree.on("create_node.jstree", function (node, parent) {
+        var parentTreeId = parent.parent,
+            newTreeId    = parent.node.id,
+            newTreeText  = parent.node.text,
+            parentId     =NodesApp.tree.jstree()._model.data[parentTreeId].original.id;
+
+            console.log(node, parent);
+            console.log('parentId: ', parentTreeId, 'newId: ', newTreeId, 'text: ', newTreeText, 'position: ', parent.position);
+    //    if (parentTreeId ==='#'){
+//
+    //        Meteor.call('createProject', {label: newTreeText, parent: '', sequence: parent.position, children: [] }, function(error, id) {
+    //            if (error) {
+    //                return alert(error.reason);
+    //            }
+    //        });
+//
+    //    } else {
+    //        parentId     = projectTree.jstree()._model.data[parentTreeId].original._id;
+//
+    //        Meteor.call('createProject', {label: newTreeText, parent: parentId, sequence: parent.position, children: [] }, function(error, id) {
+    //            if (error) {
+    //                return alert(error.reason);
+    //            } else {
+    //                projectTree.jstree()._model.data[newTreeId].original._id = id;
+    //                // Update the parent's children array as well
+    //                if (parentId !== '') {
+    //                    var parentProject = Projects.findOne({ _id: parentId});
+    //                    if (parentProject && id){
+    //                        //parentProject.children = _.union(parentProject.children, id );
+    //                        parentProject.children.splice(parent.position, 0, id);
+    //                        Meteor.call('updateProjects', [ parentProject ], function(error, id) {
+    //                            if (error) {
+    //                                return alert(error.reason);
+    //                            }
+    //                        });
+    //                    }
+    //                }
+    //            }
+    //        });
+    //    }
+    });
+
 }
 
 function createNode() {
-    var ref = tree.jstree(true),
+    var ref = NodesApp.tree.jstree(true),
         sel = ref.get_selected();
     if(!sel.length) { return false; }
     sel = sel[0];
@@ -106,7 +167,7 @@ function createNode() {
 }
 
 function renameNode() {
-    var ref = tree.jstree(true),
+    var ref = NodesApp.tree.jstree(true),
         sel = ref.get_selected();
     if(!sel.length) { return false; }
     sel = sel[0];
@@ -114,76 +175,10 @@ function renameNode() {
 }
 
 function deleteNode() {
-    var ref = tree.jstree(true),
+    var ref = NodesApp.tree.jstree(true),
         sel = ref.get_selected();
     if(!sel.length) { return false; }
     ref.delete_node(sel);
-}
-
-function prepareRecursiveTreeData(){
-    return [
-
-        {
-            'text'          : 'Root node 1',
-            'state'         : {
-                'opened'    : true,
-                'disabled'  : false,
-                'selected'  : true
-            },
-            'type'          : 'root',
-            'li_attr'       : {},
-            'a_attr'        : {},
-            'children'      : [
-
-                {
-                    'text'        : 'Folder 1',
-                    'type'        : 'folder',
-                    'li_attr'     : {},
-                    'a_attr'      : {},
-                    'children'    : [
-                        {
-                            'text'        : 'File 1',
-                            'type'        : 'file',
-                            'li_attr'     : {},
-                            'a_attr'      : {},
-                            'children'    : []
-                        },
-                        {
-                            'text': 'File 2',
-                            'type': 'file',
-                            'li_attr'     : {},
-                            'a_attr'      : {},
-                            'children'    : []
-                        }
-                    ]
-                },
-
-                {
-                    'text'        : 'Folder 2',
-                    'type'        : 'folder',
-                    'li_attr'     : {},
-                    'a_attr'      : {},
-                    'children'    : [
-                        {
-                            'text'        : 'File 3',
-                            'type'        : 'file',
-                            'li_attr'     : {},
-                            'a_attr'      : {},
-                            'children'    : []
-                        },
-                        {
-                            'text'        : 'File 4',
-                            'type'        : 'file',
-                            'li_attr'     : {},
-                            'a_attr'      : {},
-                            'children'    : []
-                        }
-                    ]
-                }
-
-            ]
-        }
-    ];
 }
 
 function prepareLinearTreeData(){
@@ -193,6 +188,7 @@ function prepareLinearTreeData(){
         {
             'id'            : '0',
             'parent'        : '#',
+            'position'      : 0,
             'text'          : 'Root',
             'state'         : {
                 'opened'    : true,
@@ -207,6 +203,7 @@ function prepareLinearTreeData(){
         {
             'id'            : '1',
             'parent'        : '0',
+            'position'      :  0,
             'text'          : 'Folder 1',
             'state'         : {
                 'opened'    : true,
@@ -214,13 +211,14 @@ function prepareLinearTreeData(){
                 'selected'  : true
             },
             'type'          : 'folder',
-            'li_attr'       : {},
+            'li_attr'       : {_id: 't1'},
             'a_attr'        : {},
         },
 
         {
             'id'            : '2',
             'parent'        : '0',
+            'position'      : 1,
             'text'          : 'Folder 2',
             'state'         : {
                 'opened'    : true,
@@ -228,13 +226,14 @@ function prepareLinearTreeData(){
                 'selected'  : true
             },
             'type'          : 'folder',
-            'li_attr'       : {},
+            'li_attr'       : {_id: 't2'},
             'a_attr'        : {},
         },
 
         {
             'id'            : '3',
             'parent'        : '1',
+            'position'      : 0,
             'text'          : 'File 1',
             'state'         : {
                 'opened'    : true,
@@ -242,13 +241,14 @@ function prepareLinearTreeData(){
                 'selected'  : true
             },
             'type'          : 'file',
-            'li_attr'       : {},
+            'li_attr'       : {_id: 't3'},
             'a_attr'        : {},
         },
 
         {
             'id'            : '4',
             'parent'        : '1',
+            'position'      : 1,
             'text'          : 'File 2',
             'state'         : {
                 'opened'    : true,
@@ -256,13 +256,14 @@ function prepareLinearTreeData(){
                 'selected'  : true
             },
             'type'          : 'file',
-            'li_attr'       : {},
+            'li_attr'       : {_id: 't4'},
             'a_attr'        : {},
         },
 
         {
             'id'            : '5',
             'parent'        : '2',
+            'position'      : 0,
             'text'          : 'File 3',
             'state'         : {
                 'opened'    : true,
@@ -270,13 +271,14 @@ function prepareLinearTreeData(){
                 'selected'  : true
             },
             'type'          : 'file',
-            'li_attr'       : {},
+            'li_attr'       : {_id: 't5'},
             'a_attr'        : {},
         },
 
         {
             'id'            : '6',
             'parent'        : '2',
+            'position'      : 1,
             'text'          : 'File 4',
             'state'         : {
                 'opened'    : true,
@@ -284,11 +286,10 @@ function prepareLinearTreeData(){
                 'selected'  : true
             },
             'type'          : 'file',
-            'li_attr'       : {},
+            'li_attr'       : {_id: 't6'},
             'a_attr'        : {},
         },
 
     ];
 
 }
-
