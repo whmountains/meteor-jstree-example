@@ -1,0 +1,47 @@
+<head>
+  <title>testjstree</title>
+</head>
+
+<body>
+  {{> showtree}}
+</body>
+
+<template name="showtree">
+
+<div class="container">
+
+    <div class="row">
+        <h1>meteor-jstree</h1>
+        <button id="createNode" type="button" class="btn btn-success btn-sm">
+            <i class="glyphicon glyphicon-asterisk"></i>
+            Create
+        </button>
+        <button id="renameNode" type="button" class="btn btn-warning btn-sm">
+            <i class="glyphicon glyphicon-pencil"></i>
+            Rename
+        </button>
+        <button id="removeNode" type="button" class="btn btn-danger  btn-sm">
+            <i class="glyphicon glyphicon-remove"></i>
+            Delete
+        </button>
+        <input type="text" value="" id="searchNode" placeholder="Search...">
+    </div>
+
+    <div class="row">
+        <div id="tree"></div>
+    </div>
+
+    <div class="row">
+        <div><a href="https://github.com/vakata/jstree">github </a><a href="http://www.jstree.com"> documentation</a></div>
+    </div>
+
+    <div class="row">
+        <p>(c) 2014 jstree        by <a href="(http://vakata.com)">Ivan Bozhanov</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>
+      <br/>(c) 2014 meteor-jstree by Tobias Klemmer                                  <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p>
+    </div>
+
+
+</div>
+
+
+</template>
