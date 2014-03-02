@@ -1,5 +1,5 @@
 /**
- * Created by tobias on 28.02.14.
+ * Created by tobkle on 28.02.14.
  */
 NodesApp               = {};
 NodesApp.subscriptions = [];

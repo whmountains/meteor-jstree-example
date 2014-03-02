@@ -1,6 +1,6 @@
 //
 // Name:    meteor-jstree-example
-// Author:  Tobias Klemmer
+// Author:  tobkle
 // Date:    28.02.2014
 // Version: 1.0
 //

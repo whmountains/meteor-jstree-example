@@ -1,5 +1,5 @@
 /**
- * Created by tobias on 23.02.14.
+ * Created by tobkle on 23.02.14.
  */
 // Publish all items for this user_id.
 Meteor.publish('nodes', function () {
