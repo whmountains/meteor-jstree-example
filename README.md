@@ -1,5 +1,9 @@
 # meteor-jstree-example
 
+Example of the tree view control jstree packaged for meteor.
+
+<img src="https://github.com/tobkle/meteor-jstree-example/blob/master/public/images/meteor-jstree-example.png" align="left">
+
 ## Getting Started
 
 Clone this repository and add the following packages by...
