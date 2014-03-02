@@ -2,7 +2,7 @@
 
 Example of the tree view control jstree packaged for meteor.
 
-<img src="https://github.com/tobkle/meteor-jstree-example/blob/master/public/images/meteor-jstree-example.png" align="left">
+![ScreenShot](https://raw.github.com/tobkle/meteor-jstree-example/master/public/images/meteor-jstree-example.png)
 
 ## Getting Started
 
