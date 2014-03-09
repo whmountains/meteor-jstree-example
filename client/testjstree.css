@@ -1,1 +1,17 @@
 /* CSS declarations go here */
+.tree{
+    min-height:    200px;
+    margin-bottom: 40px;
+}
+
+i.jstree-icon.jstree-themeicon.glyphicon.glyphicon-file.jstree-themeicon-custom {
+    z-index: 20;
+}
+
+i.vakata-context li > a > i.glyphicon.glyphicon-asterisk {
+    z-index: 1000;
+}
+
+ul.vakata-context.jstree-contextmenu.jstree-default-contextmenu{
+    z-index: 900;
+}

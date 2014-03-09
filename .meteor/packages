@@ -8,3 +8,5 @@ insecure
 preserve-inputs
 meteor-jstree
 bootstrap-3
+jquery-ui
+iron-router

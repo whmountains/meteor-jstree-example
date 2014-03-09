@@ -28,7 +28,7 @@ Meteor.methods({
         //}
 
         // pick out the whitelisted keys
-        var node = _.extend(_.pick(nodeAttributes, 'text', 'type', 'parent', 'position'), {
+        var node = _.extend(_.pick(nodeAttributes, 'text', 'type', 'parent', 'position', 'tree'), {
         //    userId: user._id,
         //  author: user.username,
             submitted: new Date().getTime()
@@ -64,7 +64,7 @@ Meteor.methods({
         for (var p=0; p < _nodes.length; p++)
         {
             // pick out the whitelisted keys
-            var node = _.extend(_.pick(_nodes[p], 'text', 'id', 'type', 'parent', 'position'), {
+            var node = _.extend(_.pick(_nodes[p], 'text', 'id', 'type', 'parent', 'position', 'tree'), {
     //            userId: user._id,
     //            author: user.username,
                 submitted: new Date().getTime()

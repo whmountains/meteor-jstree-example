@@ -2,38 +2,75 @@
   <title>meteor-jstree-example</title>
 </head>
 
-<body>
-  {{> showtree}}
-</body>
+<template name="layout">
+    <div class="container">
+        {{yield}}
+    </div>
+</template>
+
+<template name="loading">
+    <div class="row">
+        <p>Bitte warten....</p>
+    </div>
+</template>
 
 <template name="showtree">
 
-<div class="container">
-
     <div class="row">
-        <h1>meteor-jstree-example</h1>
-        <button id="createFolder" type="button" class="btn btn-success btn-sm">
-            <i class="glyphicon glyphicon-asterisk"></i>
-            Folder
-        </button>
-        <button id="createNode" type="button" class="btn btn-success btn-sm">
-            <i class="glyphicon glyphicon-asterisk"></i>
-            File
-        </button>
-        <button id="renameNode" type="button" class="btn btn-warning btn-sm">
-            <i class="glyphicon glyphicon-pencil"></i>
-            Rename
-        </button>
-        <button id="removeNode" type="button" class="btn btn-danger  btn-sm">
-            <i class="glyphicon glyphicon-remove"></i>
-            Delete
-        </button>
-        <input type="text" value="" id="searchNode" placeholder="Search...">
+        <h1>jstree-example</h1>
     </div>
 
-    <div class="row">
-        <div id="tree"></div>
-    </div>
+
+            <div class="row">
+                <input class="form-control input-sm" type="text" id="new-project1" placeholder="Add new file..." />
+                <button id="createFolder1" type="button" class="btn btn-success btn-sm">
+                    <i class="glyphicon glyphicon-asterisk"></i>
+                    Folder
+                </button>
+                <button id="createNode1" type="button" class="btn btn-success btn-sm">
+                    <i class="glyphicon glyphicon-asterisk"></i>
+                    File
+                </button>
+                <button id="renameNode1" type="button" class="btn btn-warning btn-sm">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    Rename
+                </button>
+                <button id="removeNode1" type="button" class="btn btn-danger  btn-sm">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Delete
+                </button>
+                <input type="text" value="" id="searchNode1" placeholder="Search...">
+            </div>
+
+            <div class="row tree">
+                <div id="tree1"></div>
+            </div>
+
+            <div class="row">
+                <input class="form-control input-sm" type="text" id="new-project2" placeholder="Add new file..." />
+                <button id="createFolder2" type="button" class="btn btn-success btn-sm">
+                    <i class="glyphicon glyphicon-asterisk"></i>
+                    Folder
+                </button>
+                <button id="createNode2" type="button" class="btn btn-success btn-sm">
+                    <i class="glyphicon glyphicon-asterisk"></i>
+                    File
+                </button>
+                <button id="renameNode2" type="button" class="btn btn-warning btn-sm">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    Rename
+                </button>
+                <button id="removeNode2" type="button" class="btn btn-danger  btn-sm">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Delete
+                </button>
+                <input type="text" value="" id="searchNode2" placeholder="Search...">
+            </div>
+
+            <div class="row tree">
+                <div id="tree2"></div>
+            </div>
+
 
     <div class="row">
         <p></p>
@@ -44,9 +81,6 @@
         <p>(c) 2014 jstree        by <a href="(http://vakata.com)">Ivan Bozhanov</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>
       <br/>(c) 2014 meteor-jstree by <a href="https://github.com/tobkle/meteor-jstree-example">tobkle</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p>
     </div>
-
-
-</div>
 
 
 </template>
