@@ -34,52 +34,7 @@ var okCancelEvents = function (selector, callbacks) {
     var ok     = callbacks.ok     || function () {};
     var cancel = callbacks.cancel || function () {};
 
-    var events =     {
-
-        'click #createFolder1' : function (evt){
-            evt.preventDefault();
-            Nodes1.tree('createNode', evt, 'default', 'New Folder', true);
-        },
-        'click #createNode1' : function (evt){
-            evt.preventDefault();
-            Nodes1.tree('createNode', evt, 'file', 'New File', true);
-        },
-        'click #renameNode1' : function (evt){
-            evt.preventDefault();
-            Nodes1.tree('renameNode', evt);
-        },
-        'click #removeNode1' : function (evt){
-            evt.preventDefault();
-            Nodes1.tree('deleteNode', evt);
-        },
-        'keyup #searchNode1' : function (evt){
-            evt.preventDefault();
-            Nodes1.tree('searchNode', '#searchNode1');
-        },
-
-
-        'click #createFolder2' : function (evt){
-            evt.preventDefault();
-            Nodes2.tree('createNode', evt, 'default', 'New Folder', true);
-        },
-        'click #createNode2' : function (evt){
-            evt.preventDefault();
-            Nodes2.tree('createNode', evt, 'file', 'New File', true);
-        },
-        'click #renameNode2' : function (evt){
-            evt.preventDefault();
-            Nodes2.tree('renameNode', evt);
-        },
-        'click #removeNode2' : function (evt){
-            evt.preventDefault();
-            Nodes2.tree('deleteNode', evt);
-        },
-        'keyup #searchNode2' : function (evt){
-            evt.preventDefault();
-            Nodes2.tree('searchNode', '#searchNode2');
-        }
-
-    };
+    var events =     {};
 
     events['keyup '+selector+', keydown '+selector+', focusout '+selector] =
         function (evt) {
@@ -109,15 +64,74 @@ var activateInput = function (input) {
 
 Template.showtree.events(
 
-    okCancelEvents(
-        '#new-project1',
-        {
-            ok: function (text, evt) {
-                var parentId = Session.get('selectedNodes')[0] || '#';
-                Nodes1.tree('createNode', evt, 'file', text, false);
-                evt.target.value = "";
+  _.extend(
+            {
+                'click #createFolder1' : function (evt){
+                evt.preventDefault();
+                Nodes1.tree('createNode', evt, 'default', 'New Folder', true);
+                },
+                'click #createNode1' : function (evt){
+                    evt.preventDefault();
+                    Nodes1.tree('createNode', evt, 'file', 'New File', true);
+                },
+                'click #renameNode1' : function (evt){
+                    evt.preventDefault();
+                    Nodes1.tree('renameNode', evt);
+                },
+                'click #removeNode1' : function (evt){
+                    evt.preventDefault();
+                    Nodes1.tree('deleteNode', evt);
+                },
+                'keyup #searchNode1' : function (evt){
+                    evt.preventDefault();
+                    Nodes1.tree('searchNode', '#searchNode1');
+                },
+
+
+                'click #createFolder2' : function (evt){
+                    evt.preventDefault();
+                    Nodes2.tree('createNode', evt, 'default', 'New Folder', true);
+                },
+                'click #createNode2' : function (evt){
+                    evt.preventDefault();
+                    Nodes2.tree('createNode', evt, 'file', 'New File', true);
+                },
+                'click #renameNode2' : function (evt){
+                    evt.preventDefault();
+                    Nodes2.tree('renameNode', evt);
+                },
+                'click #removeNode2' : function (evt){
+                    evt.preventDefault();
+                    Nodes2.tree('deleteNode', evt);
+                },
+                'keyup #searchNode2' : function (evt){
+                    evt.preventDefault();
+                    Nodes2.tree('searchNode', '#searchNode2');
+                }
             }
-        }
-    )
+            ,
+            okCancelEvents(
+                '#new-project1',
+                {
+                    ok: function (text, evt) {
+                        var parentId = Session.get('selectedNodes')[0] || '#';
+                        Nodes1.tree('createNode', evt, 'file', text, false);
+                        evt.target.value = "";
+                    }
+                }
+            )
+            ,
+            okCancelEvents(
+                '#new-project2',
+                {
+                    ok: function (text, evt) {
+                        var parentId = Session.get('selectedNodes')[0] || '#';
+                        Nodes2.tree('createNode', evt, 'file', text, false);
+                        evt.target.value = "";
+                    }
+                }
+            )
+  )
+
 
 );
