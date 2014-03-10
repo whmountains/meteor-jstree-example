@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="testjstree.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="testjstree.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/testjstree.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="3" selection-start="4397" selection-end="4397" vertical-scroll-proportion="0.8684211" vertical-offset="1104" max-vertical-offset="2130">
+            <state line="57" column="0" selection-start="1636" selection-end="1636" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2130">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -34,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery.ui.tree-1.0.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="jquery.ui.tree-1.0.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/lib/jquery.ui.tree-1.0.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="213" column="31" selection-start="11316" selection-end="11316" vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="5985">
+            <state line="276" column="60" selection-start="13486" selection-end="13486" vertical-scroll-proportion="0.33333334" vertical-offset="2656" max-vertical-offset="5970">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#415#470#0" expanded="false" />
@@ -137,9 +137,9 @@
         <option value="$PROJECT_DIR$/client/lib/router.js" />
         <option value="$PROJECT_DIR$/client/lib/jquery.ui.tree-0.1.js" />
         <option value="$PROJECT_DIR$/client/testjstree.css" />
-        <option value="$PROJECT_DIR$/client/lib/jquery.ui.tree-1.0.js" />
         <option value="$PROJECT_DIR$/client/testjstree.html" />
         <option value="$PROJECT_DIR$/client/testjstree.js" />
+        <option value="$PROJECT_DIR$/client/lib/jquery.ui.tree-1.0.js" />
       </list>
     </option>
   </component>
@@ -731,19 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/lib/jquery.ui.tree-1.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="31" selection-start="11316" selection-end="11316" vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="5985">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#415#470#0" expanded="false" />
-            <element signature="e#778#1003#0" expanded="false" />
-            <element signature="e#5887#6864#0" expanded="false" />
-            <element signature="e#6902#10111#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/testjstree.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="108" selection-start="1649" selection-end="1649" vertical-scroll-proportion="-30.625" vertical-offset="0" max-vertical-offset="1380">
@@ -753,9 +740,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/testjstree.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="3" selection-start="4397" selection-end="4397" vertical-scroll-proportion="0.8684211" vertical-offset="1104" max-vertical-offset="2130">
+        <state line="57" column="0" selection-start="1636" selection-end="1636" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2130">
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/lib/jquery.ui.tree-1.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="276" column="60" selection-start="13486" selection-end="13486" vertical-scroll-proportion="0.33333334" vertical-offset="2656" max-vertical-offset="5970">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#415#470#0" expanded="false" />
+            <element signature="e#778#1003#0" expanded="false" />
+            <element signature="e#5887#6864#0" expanded="false" />
+            <element signature="e#6902#10111#0" expanded="false" />
           </folding>
         </state>
       </provider>

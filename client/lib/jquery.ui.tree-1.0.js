@@ -275,7 +275,6 @@
                 }
                 Session.set('selectedNodes', selectedNodes);
                 Session.set('selectedTree' , selectedTree );
-                console.log("changed.jstree:", selectedTree, selectedNodes);
             });
         },
 
