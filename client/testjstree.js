@@ -18,7 +18,7 @@ Template.showtree.rendered  = function(){
     Nodes2  = $('#tree2').tree();
 
     if (!self.handle){
-        self.handle = Meteor.autorun(function(){
+        self.handle = Tracker.autorun(function(){
             // refresh trees on new data
             nodes = Nodes.find();
             Nodes1.tree('option', 'data', 'Projects');
